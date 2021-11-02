@@ -11,15 +11,11 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var context: Context
-
     lateinit var mainActivityViewModel: MainActivityViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        context = this@MainActivity
 
         mainActivityViewModel = ViewModelProvider(this).get(MainActivityViewModel::class.java)
 
@@ -29,8 +25,8 @@ class MainActivity : AppCompatActivity() {
 
             mainActivityViewModel.getUser()!!.observe(this, Observer { serviceSetterGetter ->
 
-            progressBar.hideProgressBar()
-
+                progressBar.hideProgressBar()
+                lblResponse.text = serviceSetterGetter.url
             })
 
         }
